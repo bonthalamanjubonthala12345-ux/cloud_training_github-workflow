@@ -1,0 +1,854 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STYLEVIBE | Fashion Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #faf8f5;
+    --dark: #211d20;
+    --muted: #888087;
+    --accent: #bc7895;
+    --accent2: #e8b9c9;
+    --white: #ffffff;
+    --card: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    overflow-x: hidden;
+}
+
+button, select { font: inherit; }
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 7%;
+    background: rgba(250,248,245,.92);
+    backdrop-filter: blur(15px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #eee8e9;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.logo span { color: var(--accent); }
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--dark);
+    font-size: 14px;
+    transition: .3s;
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+.hero {
+    min-height: 570px;
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    align-items: center;
+    padding: 65px 8%;
+    gap: 40px;
+    overflow: hidden;
+}
+
+.hero-content {
+    animation: slideUp 1s ease;
+}
+
+.eyebrow {
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 3px;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 6vw, 78px);
+    line-height: 1.1;
+    margin: 22px 0;
+}
+
+h1 span { color: var(--accent); }
+
+.hero-content p {
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 480px;
+    font-size: 15px;
+}
+
+.primary-btn {
+    background: var(--dark);
+    color: white;
+    border: none;
+    padding: 15px 27px;
+    border-radius: 7px;
+    margin-top: 28px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.primary-btn:hover {
+    background: var(--accent);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px #bc789544;
+}
+
+.hero-image {
+    height: 440px;
+    border-radius: 180px 180px 15px 15px;
+    background:
+    linear-gradient(180deg, transparent, #211d2030),
+    url('https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=900') center/cover;
+    position: relative;
+    animation: float 5s ease-in-out infinite;
+}
+
+.hero-label {
+    position: absolute;
+    bottom: 25px;
+    left: -25px;
+    background: white;
+    padding: 17px 23px;
+    border-radius: 9px;
+    box-shadow: 0 8px 30px #0001;
+    font-size: 13px;
+}
+
+/* COMMON SECTIONS */
+
+section { padding: 75px 8%; }
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 39px;
+    margin: 12px 0;
+}
+
+.section-title p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* STYLE CARDS */
+
+.styles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.style-card {
+    height: 290px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: .4s;
+}
+
+.style-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .6s;
+}
+
+.style-card:hover img { transform: scale(1.1); }
+
+.style-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent 35%, #000b);
+}
+
+.style-info {
+    position: absolute;
+    bottom: 22px;
+    left: 22px;
+    z-index: 2;
+    color: white;
+}
+
+.style-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 25px;
+}
+
+/* FASHION ADVISOR */
+
+.advisor {
+    background: #f0e8eb;
+}
+
+.advisor-container {
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    border-radius: 18px;
+    padding: 38px;
+    box-shadow: 0 15px 50px #00000008;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #e8e0e3;
+    border-radius: 7px;
+    background: #fff;
+    outline: none;
+    color: var(--dark);
+    cursor: pointer;
+}
+
+.form-group select:focus {
+    border-color: var(--accent);
+}
+
+.advisor button { width: 100%; }
+
+.result {
+    display: none;
+    margin-top: 30px;
+    padding: 25px;
+    background: #faf5f7;
+    border-radius: 12px;
+    animation: slideUp .5s ease;
+}
+
+.result h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 27px;
+    margin-bottom: 15px;
+}
+
+.result p {
+    line-height: 1.9;
+    color: #655c63;
+    font-size: 14px;
+}
+
+.result .primary-btn {
+    width: auto;
+    margin-top: 18px;
+}
+
+.color-list {
+    display: flex;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.color-dot {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 2px 7px #0002;
+}
+
+/* INSPIRATION */
+
+.inspiration-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.inspiration-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: .35s;
+}
+
+.inspiration-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px #00000010;
+}
+
+.inspiration-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+
+.inspiration-content { padding: 20px; }
+
+.inspiration-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 21px;
+}
+
+.inspiration-content p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 8px;
+    line-height: 1.7;
+}
+
+/* TIPS */
+
+.tips {
+    background: #211d20;
+    color: white;
+}
+
+.tips .section-title p { color: #c1b8be; }
+
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.tip {
+    padding: 25px;
+    border: 1px solid #ffffff22;
+    border-radius: 12px;
+    transition: .3s;
+}
+
+.tip:hover {
+    background: #ffffff12;
+    transform: translateY(-6px);
+}
+
+.tip .number {
+    color: var(--accent2);
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.tip h3 { margin: 15px 0 10px; }
+
+.tip p {
+    color: #c4bdc1;
+    line-height: 1.8;
+    font-size: 13px;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 35px 8%;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+footer strong { color: var(--accent); }
+
+/* ANIMATIONS */
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(35px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: .8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media(max-width:800px) {
+    .hero {
+        grid-template-columns: 1fr;
+        padding-top: 55px;
+    }
+
+    .hero-image { height: 400px; }
+
+    .styles, .inspiration-grid, .tips-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .nav-links { gap: 12px; }
+}
+
+@media(max-width:550px) {
+    .navbar { padding: 18px 5%; }
+    .logo { font-size: 19px; }
+    .nav-links a { font-size: 11px; }
+    .hero { padding: 45px 6%; }
+    .hero-image { height: 340px; }
+    section { padding: 55px 6%; }
+    .styles, .inspiration-grid, .tips-grid, .form-grid {
+        grid-template-columns: 1fr;
+    }
+    .advisor-container { padding: 22px; }
+    .section-title h2 { font-size: 31px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">STYLE<span>VIBE.</span></div>
+
+    <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#styles">Styles</a>
+        <a href="#advisor">Advisor</a>
+        <a href="#inspiration">Explore</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="home">
+    <div class="hero-content">
+        <div class="eyebrow">Discover Your Signature Style</div>
+
+        <h1>Fashion is an <span>Attitude.</span></h1>
+
+        <p>
+            Discover your personal fashion identity.
+            Explore outfit ideas, find perfect color combinations,
+            and get expert-inspired styling guidance.
+        </p>
+
+        <button class="primary-btn"
+        onclick="document.getElementById('advisor').scrollIntoView({behavior:'smooth'})">
+            Discover Your Style →
+        </button>
+    </div>
+
+    <div class="hero-image">
+        <div class="hero-label">
+            <strong>STYLEVIBE COLLECTION</strong>
+            <br>Express yourself differently.
+        </div>
+    </div>
+</header>
+
+<!-- STYLES -->
+<section id="styles">
+    <div class="section-title reveal">
+        <div class="eyebrow">Explore Your Identity</div>
+        <h2>Find Your Fashion Style</h2>
+        <p>Different moods. Different styles. One unique you.</p>
+    </div>
+
+    <div class="styles">
+
+        <div class="style-card reveal" onclick="selectStyle('Casual')">
+            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700">
+            <div class="style-info"><h3>Casual</h3><p>Effortlessly stylish</p></div>
+        </div>
+
+        <div class="style-card reveal" onclick="selectStyle('Streetwear')">
+            <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=700">
+            <div class="style-info"><h3>Streetwear</h3><p>Bold & confident</p></div>
+        </div>
+
+        <div class="style-card reveal" onclick="selectStyle('Formal')">
+            <img src="https://images.unsplash.com/photo-1506629905607-d9a9c3c8e6a2?w=700">
+            <div class="style-info"><h3>Formal</h3><p>Class & elegance</p></div>
+        </div>
+
+        <div class="style-card reveal" onclick="selectStyle('Minimalist')">
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=700">
+            <div class="style-info"><h3>Minimalist</h3><p>Simple is beautiful</p></div>
+        </div>
+
+        <div class="style-card reveal" onclick="selectStyle('Vintage')">
+            <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=700">
+            <div class="style-info"><h3>Vintage</h3><p>Classic never fades</p></div>
+        </div>
+
+        <div class="style-card reveal" onclick="selectStyle('Traditional')">
+            <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=700">
+            <div class="style-info"><h3>Traditional</h3><p>Culture meets fashion</p></div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ADVISOR -->
+<section class="advisor" id="advisor">
+
+    <div class="section-title reveal">
+        <div class="eyebrow">Personalized Styling</div>
+        <h2>Your Personal Fashion Advisor</h2>
+        <p>Tell us your preferences. Let's create your perfect outfit.</p>
+    </div>
+
+    <div class="advisor-container reveal">
+
+        <div class="form-grid">
+
+            <div class="form-group">
+                <label>Choose Occasion</label>
+                <select id="occasion">
+                    <option value="College">College</option>
+                    <option value="Party">Party</option>
+                    <option value="Office">Office</option>
+                    <option value="Wedding">Wedding</option>
+                    <option value="Casual outing">Casual outing</option>
+                    <option value="Date">Date</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Preferred Style</label>
+                <select id="style">
+                    <option value="Casual">Casual</option>
+                    <option value="Streetwear">Streetwear</option>
+                    <option value="Formal">Formal</option>
+                    <option value="Minimalist">Minimalist</option>
+                    <option value="Vintage">Vintage</option>
+                    <option value="Traditional">Traditional</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Color Preference</label>
+                <select id="color">
+                    <option value="Black and White">Black & White</option>
+                    <option value="Earth tones">Earth Tones</option>
+                    <option value="Pastel colors">Pastel Colors</option>
+                    <option value="Bold colors">Bold Colors</option>
+                    <option value="Neutral colors">Neutral Colors</option>
+                    <option value="Surprise me">Surprise Me</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Budget</label>
+                <select id="budget">
+                    <option value="Budget friendly">Under ₹1,000</option>
+                    <option value="Mid range">₹1,000 - ₹3,000</option>
+                    <option value="Premium">₹3,000 - ₹5,000</option>
+                    <option value="Luxury">Above ₹5,000</option>
+                </select>
+            </div>
+
+        </div>
+
+        <button class="primary-btn" onclick="generateOutfit()">
+            ✨ Generate My Outfit
+        </button>
+
+        <div class="result" id="result">
+            <div class="eyebrow">YOUR PERSONAL LOOK</div>
+            <h3 id="resultTitle">Your outfit</h3>
+            <p id="resultDescription"></p>
+
+            <div class="color-list" id="palette"></div>
+
+            <p id="resultTip"></p>
+
+            <button class="primary-btn" onclick="saveOutfit()">
+                ♡ Save This Look
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<!-- INSPIRATION -->
+<section id="inspiration">
+
+    <div class="section-title reveal">
+        <div class="eyebrow">Fashion Inspiration</div>
+        <h2>Trending Outfit Ideas</h2>
+        <p>Get inspired. Experiment. Create your own look.</p>
+    </div>
+
+    <div class="inspiration-grid">
+
+        <div class="inspiration-card reveal">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=700">
+            <div class="inspiration-content">
+                <h3>Everyday Elegance</h3>
+                <p>Neutral outfits, comfortable fits and simple accessories.</p>
+            </div>
+        </div>
+
+        <div class="inspiration-card reveal">
+            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700">
+            <div class="inspiration-content">
+                <h3>Urban Fashion</h3>
+                <p>Oversized silhouettes, sneakers and contemporary streetwear.</p>
+            </div>
+        </div>
+
+        <div class="inspiration-card reveal">
+            <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=700">
+            <div class="inspiration-content">
+                <h3>Modern Chic</h3>
+                <p>Elegant layering, balanced colors and statement pieces.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- TIPS -->
+<section class="tips">
+
+    <div class="section-title reveal">
+        <div class="eyebrow">Style Knowledge</div>
+        <h2>Fashion Rules Worth Knowing</h2>
+        <p>Small styling decisions can transform your entire appearance.</p>
+    </div>
+
+    <div class="tips-grid">
+
+        <div class="tip reveal">
+            <div class="number">01</div>
+            <h3>Color Coordination</h3>
+            <p>Combine complementary colors. Start with neutral shades and add one statement color.</p>
+        </div>
+
+        <div class="tip reveal">
+            <div class="number">02</div>
+            <h3>Fit Matters</h3>
+            <p>Choose clothing that fits comfortably and creates a balanced silhouette.</p>
+        </div>
+
+        <div class="tip reveal">
+            <div class="number">03</div>
+            <h3>Accessorize Smartly</h3>
+            <p>Use watches, belts, bags and footwear to complete your outfit without overdoing it.</p>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    <div class="logo">STYLE<span>VIBE.</span></div>
+    <p style="margin-top:12px;">Your style. Your identity. Your confidence.</p>
+    <p style="margin-top:15px;">© 2026 STYLEVIBE Fashion Studio</p>
+</footer>
+
+<script>
+
+// OUTFIT RECOMMENDATIONS
+
+const outfitData = {
+
+    Casual: {
+        title: "Effortless Casual Look",
+        clothes: "A well-fitted T-shirt or relaxed shirt paired with straight-fit jeans or chinos. Complete the look with clean sneakers.",
+        tip: "Styling tip: Keep your outfit comfortable and use a simple watch or minimal accessories.",
+        colors: ["#eeeeee", "#333333", "#a6b49b"]
+    },
+
+    Streetwear: {
+        title: "Urban Streetwear Look",
+        clothes: "An oversized graphic T-shirt or hoodie paired with cargo pants or relaxed denim. Add statement sneakers and a cap.",
+        tip: "Styling tip: Experiment with layering and different proportions.",
+        colors: ["#242424", "#d2a679", "#777777"]
+    },
+
+    Formal: {
+        title: "Elegant Formal Look",
+        clothes: "A crisp shirt paired with tailored trousers. Add formal shoes, a matching belt and a classic watch.",
+        tip: "Styling tip: Well-ironed clothing and properly fitted trousers make a big difference.",
+        colors: ["#172c45", "#eeeeee", "#9b9b9b"]
+    },
+
+    Minimalist: {
+        title: "Clean Minimalist Look",
+        clothes: "A plain premium shirt, straight-fit trousers and minimal sneakers. Keep accessories simple.",
+        tip: "Styling tip: Focus on quality basics, clean lines and neutral colors.",
+        colors: ["#e8e1d7", "#303030", "#a8a8a8"]
+    },
+
+    Vintage: {
+        title: "Retro Vintage Look",
+        clothes: "Try a retro printed shirt, vintage denim, classic loafers or sneakers, and a timeless accessory.",
+        tip: "Styling tip: Combine vintage-inspired pieces with modern basics.",
+        colors: ["#a87852", "#d7c4a1", "#59664b"]
+    },
+
+    Traditional: {
+        title: "Traditional Elegance",
+        clothes: "Choose a well-fitted kurta or traditional outfit with complementary bottoms and suitable footwear.",
+        tip: "Styling tip: Coordinate your accessories and footwear with the outfit.",
+        colors: ["#9b354e", "#d9b56e", "#eee2ce"]
+    }
+
+};
+
+const palettes = {
+    "Black and White": ["#171717", "#ffffff", "#777777"],
+    "Earth tones": ["#876448", "#c5a47c", "#646b4e"],
+    "Pastel colors": ["#e8b9c9", "#b9cde0", "#e8d5ae"],
+    "Bold colors": ["#e34d4d", "#f0b52c", "#343a78"],
+    "Neutral colors": ["#e8e1d7", "#aaa39b", "#383431"]
+};
+
+let currentOutfit = null;
+
+// GENERATE OUTFIT
+
+function generateOutfit() {
+
+    const occasion = document.getElementById("occasion").value;
+    const style = document.getElementById("style").value;
+    const color = document.getElementById("color").value;
+    const budget = document.getElementById("budget").value;
+
+    const outfit = outfitData[style];
+
+    let palette = color === "Surprise me"
+        ? outfit.colors
+        : palettes[color];
+
+    let occasionTip = {
+        College: "For college, prioritize comfort and easy-to-repeat combinations.",
+        Party: "For parties, add one standout piece to make your outfit memorable.",
+        Office: "For office wear, choose polished, comfortable and coordinated pieces.",
+        Wedding: "For weddings, consider the dress code and choose elegant fabrics.",
+        "Casual outing": "For casual outings, keep things relaxed but well coordinated.",
+        Date: "For a date, choose an outfit that feels comfortable and reflects your personality."
+    };
+
+    currentOutfit = {
+        title: outfit.title,
+        occasion: occasion,
+        style: style,
+        clothes: outfit.clothes,
+        palette: palette
+    };
+
+    document.getElementById("resultTitle").innerText =
+        outfit.title + " | " + occasion;
+
+    document.getElementById("resultDescription").innerHTML =
+        "<b>Outfit suggestion:</b> " + outfit.clothes +
+        "<br><br><b>Budget:</b> " + budget +
+        "<br><br><b>Occasion guidance:</b> " + occasionTip[occasion];
+
+    document.getElementById("resultTip").innerHTML =
+        "<b>Fashion tip:</b> " + outfit.tip;
+
+    document.getElementById("palette").innerHTML =
+        palette.map(c =>
+            `<div class="color-dot" style="background:${c}" title="${c}"></div>`
+        ).join("");
+
+    const result = document.getElementById("result");
+    result.style.display = "block";
+
+    result.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+    });
+}
+
+// SAVE FAVOURITE LOOK
+
+function saveOutfit() {
+
+    if (!currentOutfit) return;
+
+    let saved = JSON.parse(localStorage.getItem("savedLooks") || "[]");
+
+    saved.push(currentOutfit);
+
+    localStorage.setItem("savedLooks", JSON.stringify(saved));
+
+    alert("♡ Your outfit idea has been saved!");
+}
+
+// CLICK STYLE CARD
+
+function selectStyle(style) {
+
+    document.getElementById("style").value = style;
+
+    document.getElementById("advisor").scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+// SCROLL ANIMATIONS
+
+const observer = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+        }
+
+    });
+
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach(element => {
+    observer.observe(element);
+});
+
+</script>
+
+</body>
+</html>
